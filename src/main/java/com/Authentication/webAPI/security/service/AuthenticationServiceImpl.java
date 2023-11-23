@@ -1,6 +1,5 @@
 package com.Authentication.webAPI.security.service;
 
-package com.api.webservice.security.service;
 
 
 import com.Authentication.webAPI.security.dao.request.SignUpAdmin;

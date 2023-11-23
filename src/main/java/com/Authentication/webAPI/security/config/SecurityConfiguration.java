@@ -1,5 +1,7 @@
 package com.Authentication.webAPI.security.config;
 
+import com.Authentication.webAPI.security.jwt.JwtAuthenticationFilter;
+import com.Authentication.webAPI.security.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
