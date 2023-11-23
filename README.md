@@ -137,6 +137,15 @@ Start your Spring Boot application (WebserviceApplication).
     - Authorization:
         - Type: Bearer
         - Token: Copy-paste token obtained during sign-in or login
+- **Data:**
+  ```json
+  {
+  "firstName": "wasabi",
+  "lastName": "wasabi",
+  "email": "wasabi@gmail.com",
+  "password": "password"
+  }
+  ```
 
 #### Update Data (only by user with admin role)
 
@@ -163,12 +172,4 @@ Start your Spring Boot application (WebserviceApplication).
     - Authorization:
         - Type: Bearer
         - Token: Copy-paste token obtained during sign-in or login
-- **Data:**
-  ```json
-  {
-    "firstName": "wasabi",
-    "lastName": "wasabi",
-    "email": "wasabi@gmail.com",
-    "password": "password"
-  }
-  ```
+

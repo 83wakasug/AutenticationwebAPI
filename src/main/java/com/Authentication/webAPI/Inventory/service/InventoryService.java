@@ -4,7 +4,6 @@ package com.Authentication.webAPI.Inventory.service;
 import com.Authentication.webAPI.Inventory.entity.Inventory;
 import com.Authentication.webAPI.Inventory.repository.InventoryRepository;
 import lombok.RequiredArgsConstructor;
-import org.apache.catalina.mapper.Mapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,7 +16,6 @@ import java.util.Optional;
 public class InventoryService {
 
     private final InventoryRepository repository;
-    private final Mapper mapper;
     public List<Inventory> findAll(){
         try {
             return repository.findAll();
