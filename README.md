@@ -28,9 +28,9 @@ Inlämning
 
 3. Make Table molndal on MySQL
 - Ensure that you have created the molndal table in your MySQL database.
-4. Start WebserviceApplication
+4. Start AuthenticationWebAPI
 
-Start your Spring Boot application (WebserviceApplication).
+Start your Spring Boot application (Application).
 
 ---
 
