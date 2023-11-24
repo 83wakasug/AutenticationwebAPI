@@ -141,9 +141,9 @@ Start your Spring Boot application (Application).
   ```json
   {
   "productName": "Orange",
-  "price": 200.0,
-  "stock": 2000
-}
+    "price": 100.0,
+    "stock": 500
+  }
   ```
 
 #### Update Data (only by user with admin role)
@@ -158,8 +158,8 @@ Start your Spring Boot application (Application).
   ```json
   {
     "productName": "Orange3",
-    "price": 100.0,
-    "stock": 3000
+    "price": 200.0,
+    "stock": 2000
   }
   ```
 
