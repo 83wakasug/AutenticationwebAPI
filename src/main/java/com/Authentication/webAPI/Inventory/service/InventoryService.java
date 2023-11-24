@@ -18,6 +18,9 @@ public class InventoryService {
     private final InventoryRepository repository;
     public List<Inventory> findAll(){
         try {
+            List<Inventory> data = repository.findAll();
+            if (data.isEmpty()) return null;
+
             return repository.findAll();
         } catch (Exception e) {
             // Handle the exception or log it
