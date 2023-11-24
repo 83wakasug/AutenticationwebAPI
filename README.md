@@ -1,5 +1,16 @@
 # ApiWebService
-Inlämning
+This program is an *inventory management system* that allows for the management of product names, names, and quantities. To use the system, **user registration** is required. Users with the role *USER* can:
+
+- Add products
+- View product information
+
+Users with the role *ADMIN*, in addition to the above, have the capability for:
+
+- Information updates
+- Product deletion
+
+Upon logging in or signing in, users generate a *JWT token*, which they can then use to access the program.
+
 
 
 ### Java version:
