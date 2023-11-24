@@ -45,10 +45,19 @@ public class LoginUser implements UserDetails {
 
     private Set<Roles> roles;
 
+
+    /**
+     * Set the roles associated with the user.
+     * @param roles Set of Roles assigned to the user.
+     */
     public void setRoles(Set<Roles> roles) {
         this.roles = roles;
     }
 
+    /**
+     * Get the authorities granted to the user.
+     * @return Collection of GrantedAuthority objects based on user roles.
+     */
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return (Collection<? extends GrantedAuthority>) this.roles.stream()
@@ -56,26 +65,45 @@ public class LoginUser implements UserDetails {
                 .collect(Collectors.toSet());
     }
 
+    /**
+     * Get the username of the user.
+     * @return User's email as the username.
+     */
     @Override
     public String getUsername() {
         return email;
     }
-
+    /**
+     * Check if the user account is non-expired.
+     * @return Always returns false (custom implementation needed).
+     */
     @Override
     public boolean isAccountNonExpired() {
         return false;
     }
 
+
+    /**
+     * Check if the user account is non-locked.
+     * @return Always returns false (custom implementation needed).
+     */
     @Override
     public boolean isAccountNonLocked() {
         return false;
     }
-
+    /**
+     * Check if user credentials are non-expired.
+     * @return Always returns false (custom implementation needed).
+     */
     @Override
     public boolean isCredentialsNonExpired() {
         return false;
     }
 
+    /**
+     * Check if the user account is enabled.
+     * @return Always returns false (custom implementation needed).
+     */
     @Override
     public boolean isEnabled() {
         return false;

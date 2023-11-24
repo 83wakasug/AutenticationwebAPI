@@ -20,6 +20,7 @@ public class webController {
 
     private final InventoryService service;
 
+    // Get all inventory data
     @GetMapping("/SelectAll")
     public ResponseEntity<List<Inventory>> getAllData() {
         try {
@@ -31,6 +32,8 @@ public class webController {
         }
     }
 
+
+    // Get inventory data by product name
     @GetMapping("/SelectOneByName/{productName}")
     public ResponseEntity<Optional<Inventory>> getOneData(@PathVariable("productName") String productName) {
         try {
@@ -46,6 +49,7 @@ public class webController {
         }
     }
 
+    // Get inventory data by ID
     @GetMapping("/SelectOneById/{id}")
     public ResponseEntity<Optional<Inventory>> getOneData(@PathVariable("id") long id) {
         try {
@@ -61,7 +65,7 @@ public class webController {
         }
     }
 
-
+    // Add new inventory data
     @PostMapping("/add")
     public ResponseEntity<String> addData(@RequestBody Inventory inventory) {
         try {
@@ -72,6 +76,8 @@ public class webController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+
+    // Update inventory data by ID
 
     @PutMapping("/update/{id}")
     public ResponseEntity<String> update(@PathVariable("id") long id, @RequestBody Inventory inventory) {
@@ -84,6 +90,7 @@ public class webController {
         }
     }
 
+    // Delete inventory data by ID
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> delete(@PathVariable("id") Long id) {
         try {

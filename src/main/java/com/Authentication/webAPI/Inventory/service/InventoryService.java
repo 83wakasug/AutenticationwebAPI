@@ -16,6 +16,12 @@ import java.util.Optional;
 public class InventoryService {
 
     private final InventoryRepository repository;
+
+    /**
+     * Retrieve all inventory data.
+     * @return List of Inventory objects if data exists, otherwise null.
+     * @throws RuntimeException if an error occurs during data retrieval.
+     */
     public List<Inventory> findAll(){
         try {
             List<Inventory> data = repository.findAll();
@@ -28,6 +34,12 @@ public class InventoryService {
         }
     }
 
+    /**
+     * Retrieve inventory data by product name.
+     * @param productName The name of the product to retrieve.
+     * @return Optional containing Inventory if found, otherwise empty.
+     * @throws RuntimeException if an error occurs during data retrieval.
+     */
     public Optional<Inventory> findOne(String productName){
         try {
             return repository.findByProductName(productName);
@@ -38,6 +50,12 @@ public class InventoryService {
 
     }
 
+    /**
+     * Retrieve inventory data by ID.
+     * @param id The ID of the inventory data to retrieve.
+     * @return Optional containing Inventory if found, otherwise empty.
+     * @throws RuntimeException if an error occurs during data retrieval.
+     */
     public Optional<Inventory> findOneById(long id){
         try {
             return repository.findById(id);
@@ -47,7 +65,12 @@ public class InventoryService {
         }
 
     }
-
+    /**
+     * Update product details in the inventory.
+     * @param updatedInventory The updated Inventory object.
+     * @param id The ID of the product to update.
+     * @throws RuntimeException if an error occurs during the update process.
+     */
     public void updateProduct(Inventory updatedInventory,long id){
         try {
             Optional<Inventory> invent =repository.findById(id);
@@ -67,6 +90,12 @@ public class InventoryService {
         }
     }
 
+    /**
+     * Add products to the inventory.
+     * @param inventory The Inventory object to add.
+     * @throws RuntimeException if an error occurs during the addition process.
+     */
+
     public void addProducts(Inventory inventory){
         try {
             repository.save(inventory);
@@ -77,6 +106,11 @@ public class InventoryService {
 
     }
 
+    /**
+     * Delete product from the inventory by ID.
+     * @param id The ID of the product to delete.
+     * @throws RuntimeException if an error occurs during the deletion process.
+     */
     public void deleteProductByProductName(long id){
         try {
             repository.deleteById(id);

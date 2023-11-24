@@ -25,23 +25,39 @@ import static org.springframework.security.config.http.SessionCreationPolicy.STA
 @EnableMethodSecurity
 @RequiredArgsConstructor
 public class SecurityConfiguration {
+    // JWT authentication filter for processing JWT tokens
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
+    // User service for retrieving user details
     private final UserService userService;
+
+    /**
+     * Configures the security filter chain.
+     * @param http HttpSecurity object to configure security settings.
+     * @return SecurityFilterChain configured with specified settings.
+     * @throws Exception if an error occurs during configuration.
+     */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws  Exception{
         http.authorizeHttpRequests(authz -> authz
+                        // Allow public access to authentication-related endpoints
                         .requestMatchers("/api/v1/auth/**").permitAll()
+                        // Restrict access to certain endpoints based on user roles
                         .requestMatchers("/api/v1/update/{id}","/api/v1/delete/{id}").hasRole("ADMIN")
                         .requestMatchers("/api/v1/auth/**").hasAnyRole("USER","ADMIN")
+                        // Require authentication for any other endpoint
                         .anyRequest().authenticated())
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(manager -> manager.sessionCreationPolicy(STATELESS))
+                // Configure JWT authentication filter
                 .authenticationProvider(authenticationProvider()).addFilterBefore(
                         jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
-
+    /**
+     * Configures the authentication provider.
+     * @return AuthenticationProvider configured with user details service and password encoder.
+     */
     @Bean
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
@@ -49,11 +65,23 @@ public class SecurityConfiguration {
         authProvider.setPasswordEncoder(passwordEncoder());
         return authProvider;
     }
+
+    /**
+     * Configures the AuthenticationManager.
+     * @param config AuthenticationConfiguration object.
+     * @return AuthenticationManager configured with the provided AuthenticationConfiguration.
+     * @throws Exception if an error occurs during configuration.
+     */
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config)
             throws Exception {
         return config.getAuthenticationManager();
     }
+
+    /**
+     * Configures the password encoder.
+     * @return PasswordEncoder using BCrypt hashing.
+     */
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();

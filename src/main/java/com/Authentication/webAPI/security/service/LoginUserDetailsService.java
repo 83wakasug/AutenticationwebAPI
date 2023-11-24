@@ -13,17 +13,23 @@ public class LoginUserDetailsService implements UserService {
 
     private final LoginUserRepository repository;
 
-
+    /**
+     * Retrieves user details based on the provided email.
+     * Used by Spring Security for authentication and authorization.
+     * @return UserDetailsService that loads user details from the repository.
+     */
     @Override
     public UserDetailsService userDetailsService() {
+        // Lambda expression defining a UserDetailsService for the given email
         return email -> {
+            // Retrieve a user from the repository based on the provided email
             LoginUser user = repository.findByEmail(email)
                     .orElseThrow(() -> new UsernameNotFoundException("User not found"));
-
+            // Build and return a UserDetails object with the user's information
             return User.builder()
-                    .username(user.getEmail()) // ユーザー名には email を使用
+                    .username(user.getEmail()) // Use email as the username
                     .password(user.getPassword())
-                    .authorities(user.getAuthorities()) // ロールを適切に設定
+                    .authorities(user.getAuthorities()) // Set authorities (roles) appropriately
                     .build();
         };
     }

@@ -25,21 +25,33 @@ import java.io.IOException;
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private final JwtService jwtService;
     private final UserService userService;
+
+    /**
+     * Filters incoming requests to authenticate users using JWT tokens.
+     * @param request HttpServletRequest object.
+     * @param response HttpServletResponse object.
+     * @param filterChain FilterChain object for chaining filters.
+     * @throws ServletException if a servlet-specific error occurs.
+     * @throws IOException if an I/O error occurs.
+     */
     @Override
     protected void doFilterInternal(@NonNull HttpServletRequest request,
                                     @NonNull HttpServletResponse response, @NonNull FilterChain filterChain)
             throws ServletException, IOException {
+        // Extract JWT token from the Authorization header
         final String authHeader = request.getHeader("Authorization");
         final String jwt;
         final String userEmail;
+        // Check if the Authorization header is present and starts with "Bearer "
         if (StringUtils.isEmpty(authHeader) || !StringUtils.startsWith(authHeader, "Bearer ")) {
             filterChain.doFilter(request, response);
             return;
         }
-
+        // Extract the JWT token and user email from the Authorization header
         jwt = authHeader.substring(7);
         userEmail = jwtService.extractUserName(jwt);
 
+        // Authenticate the user if the token is valid and user details are present
         if (StringUtils.isNotEmpty(userEmail)
                 && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = userService.userDetailsService()
@@ -53,6 +65,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 SecurityContextHolder.setContext(context);
             }
         }
+        // Continue the filter chain
         filterChain.doFilter(request, response);
     }
 }

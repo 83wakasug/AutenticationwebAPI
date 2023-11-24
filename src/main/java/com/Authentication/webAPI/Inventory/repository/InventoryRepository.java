@@ -12,7 +12,6 @@ import java.util.Optional;
         Optional<Inventory> findByProductName(String productName);
 
         void deleteByProductName(String productName);
-        //void updateByProuductName(String productName);
 
     }
 
