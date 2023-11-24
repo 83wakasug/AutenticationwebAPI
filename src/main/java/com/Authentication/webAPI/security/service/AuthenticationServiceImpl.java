@@ -69,7 +69,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     public JwtAuthenticationResponse signupAdmin(SignUpAdmin request) {
         // Retrieve or create the ROLE_ADMIN authority
         Roles role = roleRepository.findByAuthority(Role.ROLE_ADMIN)
-                .orElseGet(() -> roleRepository.save(new Roles(Role.ROLE_ADMIN)))
+                .orElseGet(() -> roleRepository.save(new Roles(Role.ROLE_ADMIN)));
 
         // Create a new admin user with the provided details and ROLE_ADMIN authority;
         var user = LoginUser.builder().firstName(request.getFirstName())
