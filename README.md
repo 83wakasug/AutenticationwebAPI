@@ -113,7 +113,7 @@ Start your Spring Boot application (Application).
 
 #### Fetch Data by Product Name
 
-- **URL:** `localhost:8080/api/v1/{productName}`
+- **URL:** `localhost:8080/api/v1/SelectOneByName/{productName}`
 - **Method:** GET
 - **Postman Settings:**
     - Authorization:
