@@ -5,6 +5,7 @@ import com.Authentication.webAPI.security.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -42,7 +43,8 @@ public class SecurityConfiguration {
                         // Allow public access to authentication-related endpoints
                         .requestMatchers("/api/v1/auth/**").permitAll()
                         // Restrict access to certain endpoints based on user roles
-                        .requestMatchers("/api/v1/update/{id}","/api/v1/delete/{id}").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/v1/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/v1/**").hasRole("ADMIN")
                         .requestMatchers("/api/v1/auth/**").hasAnyRole("USER","ADMIN")
                         // Require authentication for any other endpoint
                         .anyRequest().authenticated())

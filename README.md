@@ -87,9 +87,9 @@ Start your Spring Boot application (Application).
 - **Data Example:**
   ```json
   {
-    "firstName": "name",
+    "firstName": "Admin",
     "lastName": "last",
-    "email": "name@gmail.com",
+    "email": "admin@gmail.com",
     "password": "password"
   }
   ```
@@ -115,25 +115,17 @@ Start your Spring Boot application (Application).
 
 #### Fetch All Data
 
-- **URL:** `localhost:8080/api/v1/SelectAll`
+- **URL:** `localhost:8080/api/v1/`
 - **Method:** GET
 - **Postman Settings:**
     - Authorization:
         - Type: Bearer
         - Token: Copy-paste token obtained during sign-in or login
 
-#### Fetch Data by Product Name
-
-- **URL:** `localhost:8080/api/v1/SelectOneByName/{productName}`
-- **Method:** GET
-- **Postman Settings:**
-    - Authorization:
-        - Type: Bearer
-        - Token: Copy-paste token obtained during sign-in or login
 
 #### Fetch Data by ID
 
-- **URL:** `localhost:8080/api/v1/SelectOneById/{id}`
+- **URL:** `localhost:8080/api/v1/{id}`
 - **Method:** GET
 - **Postman Settings:**
     - Authorization:
@@ -142,7 +134,7 @@ Start your Spring Boot application (Application).
 
 #### Add Products by JSON Format
 
-- **URL:** `localhost:8080/api/v1/add`
+- **URL:** `localhost:8080/api/v1/`
 - **Method:** POST
 - **Postman Settings:**
     - Authorization:
@@ -159,7 +151,7 @@ Start your Spring Boot application (Application).
 
 #### Update Data (only by user with admin role)
 
-- **URL:** `localhost:8080/api/v1/update/{id}`
+- **URL:** `localhost:8080/api/v1/{id}`
 - **Method:** PUT
 - **Postman Settings:**
     - Authorization:
@@ -176,7 +168,7 @@ Start your Spring Boot application (Application).
 
 #### Delete Data (only by user with admin role)
 
-- **URL:** `localhost:8080/api/v1/delete/{id}`
+- **URL:** `localhost:8080/api/v1/{id}`
 - **Method:** DELETE
 - **Postman Settings:**
     - Authorization:

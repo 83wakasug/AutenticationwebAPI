@@ -21,7 +21,7 @@ public class webController {
     private final InventoryService service;
 
     // Get all inventory data
-    @GetMapping("/SelectAll")
+    @GetMapping("/")
     public ResponseEntity<List<Inventory>> getAllData() {
         try {
             List<Inventory> inventoryList = service.findAll();
@@ -33,24 +33,9 @@ public class webController {
     }
 
 
-    // Get inventory data by product name
-    @GetMapping("/SelectOneByName/{productName}")
-    public ResponseEntity<Optional<Inventory>> getOneData(@PathVariable("productName") String productName) {
-        try {
-            Optional<Inventory> inventory = service.findOne(productName);
-            if (inventory.isPresent()) {
-                return ResponseEntity.ok(inventory);
-            } else {
-                return ResponseEntity.notFound().build();
-            }
-        } catch (Exception e) {
-            // Log the exception or handle it appropriately
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
-    }
 
     // Get inventory data by ID
-    @GetMapping("/SelectOneById/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Optional<Inventory>> getOneData(@PathVariable("id") long id) {
         try {
             Optional<Inventory> inventory = service.findOneById(id);
@@ -66,7 +51,7 @@ public class webController {
     }
 
     // Add new inventory data
-    @PostMapping("/add")
+    @PostMapping("/")
     public ResponseEntity<String> addData(@RequestBody Inventory inventory) {
         try {
             service.addProducts(inventory);
@@ -79,11 +64,15 @@ public class webController {
 
     // Update inventory data by ID
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<String> update(@PathVariable("id") long id, @RequestBody Inventory inventory) {
         try {
-            service.updateProduct(inventory,id);
-            return ResponseEntity.ok("Data updated");
+              boolean exist =service.updateProduct(inventory, id);
+            if (exist) {
+                return ResponseEntity.ok("Data updated");
+            } else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Data not found");
+            }
         } catch (Exception e) {
             // Log the exception or handle it appropriately
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -91,7 +80,7 @@ public class webController {
     }
 
     // Delete inventory data by ID
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable("id") Long id) {
         try {
             service.deleteProductByProductName(id);

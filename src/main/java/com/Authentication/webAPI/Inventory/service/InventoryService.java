@@ -71,7 +71,7 @@ public class InventoryService {
      * @param id The ID of the product to update.
      * @throws RuntimeException if an error occurs during the update process.
      */
-    public void updateProduct(Inventory updatedInventory,long id){
+    public boolean updateProduct(Inventory updatedInventory,long id){
         try {
             Optional<Inventory> invent =repository.findById(id);
             if (invent.isPresent()) {
@@ -83,11 +83,14 @@ public class InventoryService {
                 System.out.println(existingInventory.getProductName());
                 // Assuming addProducts is used for updating, adjust the method accordingly
                 addProducts(existingInventory);
+
+                return true;
             }
         } catch (Exception e) {
             // Handle the exception or log it
             throw new RuntimeException("Failed to update product: " + updatedInventory.getProductName(), e);
         }
+        return false;
     }
 
     /**
@@ -114,9 +117,11 @@ public class InventoryService {
     public void deleteProductByProductName(long id){
         try {
             repository.deleteById(id);
+
         } catch (Exception e) {
             // Handle the exception or log it
             throw new RuntimeException("Failed to delete product: " + id, e);
         }
+
     }
 }
