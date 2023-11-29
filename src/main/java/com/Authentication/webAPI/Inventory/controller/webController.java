@@ -83,8 +83,12 @@ public class webController {
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable("id") Long id) {
         try {
-            service.deleteProductByProductName(id);
-            return ResponseEntity.ok("Data deleted");
+            boolean isDeleted = service.deleteProductByProductName(id);
+            if (isDeleted) {
+                return ResponseEntity.ok("Data deleted");
+            } else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Data not found");
+            }
         } catch (Exception e) {
             // Log the exception or handle it appropriately
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();

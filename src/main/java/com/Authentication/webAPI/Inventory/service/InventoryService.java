@@ -114,9 +114,10 @@ public class InventoryService {
      * @param id The ID of the product to delete.
      * @throws RuntimeException if an error occurs during the deletion process.
      */
-    public void deleteProductByProductName(long id){
+    public boolean deleteProductByProductName(long id){
         try {
             repository.deleteById(id);
+            return true;
 
         } catch (Exception e) {
             // Handle the exception or log it
