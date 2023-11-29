@@ -45,7 +45,6 @@ public class SecurityConfiguration {
                         // Restrict access to certain endpoints based on user roles
                         .requestMatchers(HttpMethod.DELETE, "/api/v1/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/api/v1/**").hasRole("ADMIN")
-                        .requestMatchers("/api/v1/**").hasAnyRole("USER","ADMIN")
                         // Require authentication for any other endpoint
                         .anyRequest().authenticated())
                 .csrf(AbstractHttpConfigurer::disable)
