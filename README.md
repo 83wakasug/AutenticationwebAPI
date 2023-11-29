@@ -53,11 +53,10 @@ Start your Spring Boot application (Application).
 2. [Signup User with Admin Role](#signup-user-with-admin-role)
 3. [Signin with Username and Password](#signin-with-username-and-password)
 4. [Fetch All Data](#fetch-all-data)
-5. [Fetch Data by Product Name](#fetch-data-by-product-name)
-6. [Fetch Data by ID](#fetch-data-by-id)
-7. [Add Products by JSON Format](#add-products-by-json-format)
-8. [Update Data (only by user with admin role)](#update-data-only-by-user-with-admin-role)
-9. [Delete Data (only by user with admin role)](#delete-data-only-by-user-with-admin-role)
+5. [Fetch Data by ID](#fetch-data-by-id)
+6. [Add Products by JSON Format](#add-products-by-json-format)
+7. [Update Data (only by user with admin role)](#update-data-only-by-user-with-admin-role)
+8. [Delete Data (only by user with admin role)](#delete-data-only-by-user-with-admin-role)
 
 ### Signup User with User Role
 
