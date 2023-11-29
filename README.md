@@ -160,7 +160,7 @@ Start your Spring Boot application (Application).
 - **Sample Code:**
   ```json
   {
-    "productName": "Orange3",
+    "productName": "Jordgubb",
     "price": 200.0,
     "stock": 2000
   }
