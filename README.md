@@ -1,5 +1,5 @@
 # ApiWebService
-This program is an *inventory management system* that allows for the management of product names, names, and quantities. To use the system, **user registration** is required. Users with the role *USER* can:
+This program is an *inventory management system* that allows for the management of product names, prices, and quantities. To use the system, **user registration** is required. Users with the role *USER* can:
 
 - Add products
 - View product information
